@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<site>
+   <feature id="homework.feature">
+      <category name="homework.category"/>
+   </feature>
+   <category-def name="homework.category" label="homework category"/>
+</site>

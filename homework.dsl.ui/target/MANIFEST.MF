@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Automatic-Module-Name: homework.dsl.ui
+Bundle-ManifestVersion: 2
+Bundle-Name: homework.dsl.ui
+Bundle-Vendor: My Company
+Bundle-Version: 1.0.0.202311050811
+Bundle-SymbolicName: homework.dsl.ui; singleton:=true
+Bundle-ActivationPolicy: lazy
+Require-Bundle: homework.metamodel,homework.dsl,homework.dsl.ide,org.ecl
+ ipse.xtext.ui,org.eclipse.xtext.ui.shared,org.eclipse.xtext.ui.codetemp
+ lates.ui,org.eclipse.ui.editors;bundle-version="3.5.0",org.eclipse.ui.i
+ de;bundle-version="3.5.0",org.eclipse.ui,org.eclipse.compare,org.eclips
+ e.xtext.builder
+Import-Package: org.apache.log4j
+Bundle-RequiredExecutionEnvironment: JavaSE-1.8
+Export-Package: homework.ui.quickfix,homework.dsl.ui.internal,homework.u
+ i.contentassist
+Bundle-Activator: homework.dsl.ui.internal.DslActivator
+

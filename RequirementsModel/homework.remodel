@@ -1,0 +1,196 @@
+UseCaseModel Homework {
+
+	UC::studentUpdateHomework definedBySSD(Usecase1SSD)
+	UC::teacherDownloadHomework include queryHomework
+	UC::teacherIssueHomework include queryHomework definedBySSD(TeacherIssueHomeworkSSD) relatedService(TeacherIssueHomeworkService)
+	UC::teacherCommentHomework include queryHomework
+	UC::queryHomework
+	UC::studentViewComment definedBySSD(StudentViewCommentSSD)
+	UC::studentViewHomework definedBySSD(StudentViewHomeworkSSD) relatedService(StudentViewHomeworkService)
+
+	Actor Teacher {
+		teacherIssueHomework
+		teacherCommentHomework
+		teacherDownloadHomework
+	}
+
+	Actor Service ManageStudentCRUDService {
+	[Operation]
+	createStudent(studentid, class, profession)
+	queryStudent(studentID)
+	modifyStudent(studentid, class, profession)
+	deleteStudent(studentID)
+	
+Service HomeworkSystem {
+
+	}
+
+}
+
+Service ManageTeacherCRUDService {
+
+	[Operation]
+	createTeacher(institute, office)
+	queryTeacher(institute)
+	modifyTeacher(institute, office)
+	deleteTeacher(institute)
+	
+}
+Service ManageHomeworkCRUDService {
+
+	[Operation]
+	createHomework(id, description, starttime, deadline, studentprofession, studentclass, teacherid)
+	queryHomework(ID)
+	modifyHomework(id, description, starttime, deadline, studentprofession, studentclass, teacherid)
+	deleteHomework(ID)
+	
+}
+
+Student {
+		studentUpdateHomework
+		studentViewComment
+		studentViewHomework
+	}
+
+	Interaction Usecase1SSD {
+
+		[Participants:]
+
+	}
+
+	Interaction StudentViewCommentSSD {
+
+		[Participants:]
+
+	}
+
+	Interaction TeacherIssueHomeworkSSD {
+
+		[Participants: teacher TeacherIssueHomeworkService]
+
+		CallMessage::TeacherIssueHomeworkSSDCallMessage1(issueHomework TeacherIssueHomeworkSSDCallMessage1SendingEnd -> TeacherIssueHomeworkSSDExecution1StartEnd)
+		ReturnMessage::TeacherIssueHomeworkSSDCallMessage1Return(TeacherIssueHomeworkSSDExecution1FinishEnd -> TeacherIssueHomeworkSSDCallMessage1ReturnReceivingEnd TeacherIssueHomeworkSSDCallMessage1)
+		CallMessage::TeacherIssueHomeworkSSDCallMessage3(queryHomework TeacherIssueHomeworkSSDCallMessage3SendingEnd -> TeacherIssueHomeworkSSDExecution2StartEnd)
+		ReturnMessage::TeacherIssueHomeworkSSDCallMessage3Return(TeacherIssueHomeworkSSDExecution2FinishEnd -> TeacherIssueHomeworkSSDCallMessage3ReturnReceivingEnd TeacherIssueHomeworkSSDCallMessage3)
+		CallMessage::TeacherIssueHomeworkSSDCallMessage5(downloadHomework TeacherIssueHomeworkSSDCallMessage5SendingEnd -> TeacherIssueHomeworkSSDExecution3StartEnd)
+		ReturnMessage::TeacherIssueHomeworkSSDCallMessage5Return(TeacherIssueHomeworkSSDExecution3FinishEnd -> TeacherIssueHomeworkSSDCallMessage5ReturnReceivingEnd TeacherIssueHomeworkSSDCallMessage5)
+		CallMessage::TeacherIssueHomeworkSSDCallMessage7(commentHomework TeacherIssueHomeworkSSDCallMessage7SendingEnd -> TeacherIssueHomeworkSSDExecution4StartEnd)
+		ReturnMessage::TeacherIssueHomeworkSSDCallMessage7Return(TeacherIssueHomeworkSSDExecution4FinishEnd -> TeacherIssueHomeworkSSDCallMessage7ReturnReceivingEnd TeacherIssueHomeworkSSDCallMessage7)
+
+		Execution::TeacherIssueHomeworkSSDExecution1(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution1StartEnd TeacherIssueHomeworkSSDExecution1FinishEnd)
+		Execution::TeacherIssueHomeworkSSDExecution2(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution2StartEnd TeacherIssueHomeworkSSDExecution2FinishEnd)
+		Execution::TeacherIssueHomeworkSSDExecution3(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution3StartEnd TeacherIssueHomeworkSSDExecution3FinishEnd)
+		Execution::TeacherIssueHomeworkSSDExecution4(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution4StartEnd TeacherIssueHomeworkSSDExecution4FinishEnd)
+
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage1SendingEnd(teacher TeacherIssueHomeworkSSDCallMessage1)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution1StartEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution1)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution1FinishEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution1)
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage1ReturnReceivingEnd(teacher TeacherIssueHomeworkSSDCallMessage1Return)
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage3SendingEnd(teacher TeacherIssueHomeworkSSDCallMessage3)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution2StartEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution2)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution2FinishEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution2)
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage3ReturnReceivingEnd(teacher TeacherIssueHomeworkSSDCallMessage3Return)
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage5SendingEnd(teacher TeacherIssueHomeworkSSDCallMessage5)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution3StartEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution3)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution3FinishEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution3)
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage5ReturnReceivingEnd(teacher TeacherIssueHomeworkSSDCallMessage5Return)
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage7SendingEnd(teacher TeacherIssueHomeworkSSDCallMessage7)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution4StartEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution4)
+		ExecutionEnd::TeacherIssueHomeworkSSDExecution4FinishEnd(TeacherIssueHomeworkService TeacherIssueHomeworkSSDExecution4)
+		MessageEnd::TeacherIssueHomeworkSSDCallMessage7ReturnReceivingEnd(teacher TeacherIssueHomeworkSSDCallMessage7Return)
+
+	}
+
+	Interaction StudentViewHomeworkSSD {
+
+		[Participants: student StudentViewHomeworkService]
+
+		CallMessage::StudentViewHomeworkSSDCallMessage1(viewHomework StudentViewHomeworkSSDCallMessage1SendingEnd -> StudentViewHomeworkSSDExecution1StartEnd)
+		ReturnMessage::StudentViewHomeworkSSDCallMessage1Return(StudentViewHomeworkSSDExecution1FinishEnd -> StudentViewHomeworkSSDCallMessage1ReturnReceivingEnd StudentViewHomeworkSSDCallMessage1)
+		CallMessage::StudentViewHomeworkSSDCallMessage3(updatehomework StudentViewHomeworkSSDCallMessage3SendingEnd -> StudentViewHomeworkSSDExecution2StartEnd)
+		ReturnMessage::StudentViewHomeworkSSDCallMessage3Return(StudentViewHomeworkSSDExecution2FinishEnd -> StudentViewHomeworkSSDCallMessage3ReturnReceivingEnd StudentViewHomeworkSSDCallMessage3)
+		CallMessage::StudentViewHomeworkSSDCallMessage5(viewComment StudentViewHomeworkSSDCallMessage5SendingEnd -> StudentViewHomeworkSSDExecution3StartEnd)
+		ReturnMessage::StudentViewHomeworkSSDCallMessage5Return(StudentViewHomeworkSSDExecution3FinishEnd -> StudentViewHomeworkSSDCallMessage5ReturnReceivingEnd StudentViewHomeworkSSDCallMessage5)
+
+		Execution::StudentViewHomeworkSSDExecution1(StudentViewHomeworkService StudentViewHomeworkSSDExecution1StartEnd StudentViewHomeworkSSDExecution1FinishEnd)
+		Execution::StudentViewHomeworkSSDExecution2(StudentViewHomeworkService StudentViewHomeworkSSDExecution2StartEnd StudentViewHomeworkSSDExecution2FinishEnd)
+		Execution::StudentViewHomeworkSSDExecution3(StudentViewHomeworkService StudentViewHomeworkSSDExecution3StartEnd StudentViewHomeworkSSDExecution3FinishEnd)
+
+		MessageEnd::StudentViewHomeworkSSDCallMessage1SendingEnd(student StudentViewHomeworkSSDCallMessage1)
+		ExecutionEnd::StudentViewHomeworkSSDExecution1StartEnd(StudentViewHomeworkService StudentViewHomeworkSSDExecution1)
+		ExecutionEnd::StudentViewHomeworkSSDExecution1FinishEnd(StudentViewHomeworkService StudentViewHomeworkSSDExecution1)
+		MessageEnd::StudentViewHomeworkSSDCallMessage1ReturnReceivingEnd(student StudentViewHomeworkSSDCallMessage1Return)
+		MessageEnd::StudentViewHomeworkSSDCallMessage3SendingEnd(student StudentViewHomeworkSSDCallMessage3)
+		ExecutionEnd::StudentViewHomeworkSSDExecution2StartEnd(StudentViewHomeworkService StudentViewHomeworkSSDExecution2)
+		ExecutionEnd::StudentViewHomeworkSSDExecution2FinishEnd(StudentViewHomeworkService StudentViewHomeworkSSDExecution2)
+		MessageEnd::StudentViewHomeworkSSDCallMessage3ReturnReceivingEnd(student StudentViewHomeworkSSDCallMessage3Return)
+		MessageEnd::StudentViewHomeworkSSDCallMessage5SendingEnd(student StudentViewHomeworkSSDCallMessage5)
+		ExecutionEnd::StudentViewHomeworkSSDExecution3StartEnd(StudentViewHomeworkService StudentViewHomeworkSSDExecution3)
+		ExecutionEnd::StudentViewHomeworkSSDExecution3FinishEnd(StudentViewHomeworkService StudentViewHomeworkSSDExecution3)
+		MessageEnd::StudentViewHomeworkSSDCallMessage5ReturnReceivingEnd(student StudentViewHomeworkSSDCallMessage5Return)
+
+	}
+
+	Service HomeworkSystem {} Service ThirdPartyServices {}
+
+	Service TeacherIssueHomeworkService {
+
+		[Operation]
+		issueHomework()
+		queryHomework()
+		downloadHomework()
+		commentHomework()
+
+	}
+
+	Service StudentViewHomeworkService {
+
+		[Operation]
+		viewHomework()
+		updatehomework()
+		viewComment()
+
+	}
+
+}
+DomainModel Homework {
+
+	Entity User {
+		Name : String
+		Password : String
+		Identify : Identify[TEACHER|STUDENT]
+	}
+
+	@AutoCRUD Entity Student extends User {
+		StudentID : String
+		Class : String
+		Profession : String
+
+		[Refer]
+		StudenttoHomework : Homework* Association
+	}
+
+	@AutoCRUD Entity Teacher extends User {
+		Institute : String
+		Office : String
+
+		[Refer]
+		TeachertoHomework : Homework* ! Association
+	}
+
+	@AutoCRUD Entity Homework {
+		ID : String
+		Description : String
+		StartTime : Date
+		Deadline : Date
+		StudentProfession : String
+		StudentClass : String
+		TeacherID : String
+
+		[Refer]
+		HomeworktoTeacher : Teacher Association
+		HomeworktoStudent : Student* ! Association
+	}
+
+}
+

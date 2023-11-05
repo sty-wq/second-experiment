@@ -1,0 +1,19 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %pluginName
+Bundle-SymbolicName: homework.metamodel.editor;singleton:=true
+Automatic-Module-Name: homework.metamodel.editor
+Bundle-Version: 1.0.0.202311050811
+Bundle-ClassPath: .
+Bundle-Activator: homework.metamodel.homework.presentation.HomeworkEdito
+ rPlugin$Implementation
+Bundle-Vendor: %providerName
+Bundle-Localization: plugin
+Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Export-Package: homework.metamodel.homework.presentation
+Require-Bundle: org.eclipse.core.runtime,org.eclipse.core.resources;visi
+ bility:=reexport,homework.metamodel.edit;visibility:=reexport,org.eclip
+ se.emf.ecore.xmi;visibility:=reexport,org.eclipse.emf.edit.ui;visibilit
+ y:=reexport,org.eclipse.ui.ide;visibility:=reexport
+Bundle-ActivationPolicy: lazy
+

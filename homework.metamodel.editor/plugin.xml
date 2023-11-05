@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+-->
+
+<plugin>
+
+   <extension point="org.eclipse.ui.newWizards">
+      <!-- @generated homework -->
+      <category
+            id="org.eclipse.emf.ecore.Wizard.category.ID"
+            name="%_UI_Wizard_category"/>
+      <wizard
+            id="homework.metamodel.homework.presentation.HomeworkModelWizardID"
+            name="%_UI_HomeworkModelWizard_label"
+            class="homework.metamodel.homework.presentation.HomeworkModelWizard"
+            category="org.eclipse.emf.ecore.Wizard.category.ID"
+            icon="icons/full/obj16/HomeworkModelFile.gif">
+         <description>%_UI_HomeworkModelWizard_description</description>
+         <selection class="org.eclipse.core.resources.IResource"/>
+      </wizard>
+   </extension>
+
+   <extension point="org.eclipse.ui.editors">
+      <!-- @generated homework -->
+      <editor
+            id="homework.metamodel.homework.presentation.HomeworkEditorID"
+            name="%_UI_HomeworkEditor_label"
+            icon="icons/full/obj16/HomeworkModelFile.gif"
+            extensions="homework"
+            class="homework.metamodel.homework.presentation.HomeworkEditor"
+            contributorClass="homework.metamodel.homework.presentation.HomeworkActionBarContributor">
+      </editor>
+   </extension>
+
+</plugin>
